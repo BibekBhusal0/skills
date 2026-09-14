@@ -5,19 +5,18 @@ onto this machine with symlinks.
 
 ## Layout
 
-- `AGENTS.global.md` — global opencode rules, symlinked to
+- `AGENTS.global.md` — all global opencode rules in one file, symlinked to
   `~/.config/opencode/AGENTS.md`.
-- `instructions/` — detail files auto-loaded via the `instructions` field in
-  `~/.config/opencode/opencode.json`. One topic per file.
 - `skills/<name>/SKILL.md` — one folder per skill, symlinked into
   `~/.config/opencode/skills/`. Extra notes live next to `SKILL.md`.
-- `install.sh` — idempotent installer. Replaces stale symlinks, backs up
-  real files to `<dest>.bak`, merges `instructions` into `opencode.json`
-  without touching other keys.
+
+## Install
+
+Installed via `config/opencode.sh` in the omarchy-overrides repo (it sources
+`utils/symlink.sh` from there). This repo holds no installer and no CI.
 
 ## Validation
 
-No build or tests. After changing anything, run `./install.sh`, verify with
-`ls -la ~/.config/opencode/skills/`, confirm `opencode.json` still parses
-(`python3 -c "import json; json.load(open(...))"`), then quit and restart
+No build or tests. After changing anything, re-run `config/opencode.sh`,
+verify with `ls -la ~/.config/opencode/skills/`, then quit and restart
 opencode — config loads once at startup and is not hot-reloaded.
