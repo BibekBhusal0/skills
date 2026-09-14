@@ -24,14 +24,23 @@ Every project gets:
 
 ## Automation
 
-Mirror the standard CI pattern: formatting is automated, never manual.
+Mirror the standard CI pattern: what CI handles is never done manually.
 
-- `.github/workflows/lint.yml`: runs on pull requests, installs deps and runs the linter.
-- `.github/workflows/format.yml`: runs on push to main, runs the formatter, auto-commits with `chore: ...`, and pushes.
-- `package.json` scripts: `format` and `lint`, even for non-web projects that contain JS/TS, JSON, or Markdown.
-- Tell the user that build, format, and lint are handled by CI on push, and record that hands-off policy in the project's `AGENTS.md`.
+- Include lint and formatting workflows only when the project requires them: add `lint.yml` (runs on pull requests) and `format.yml` (runs on push to main, auto-commits with `chore: ...`, pushes) only when the project contains code worth checking. Skip both for docs-only or trivial projects.
+- When included, add `format` and `lint` scripts to `package.json` and tell the user that build, format, and lint are handled by CI on push. Record that hands-off policy in the project's `AGENTS.md`.
 
 See [workflows.md](workflows.md) for the reference workflow files.
+
+## Releases
+
+Mirror the standard release pattern: version bump plus notes file, published by a manual workflow.
+
+- Bump the `"version"` field in the project's version file (`package.json`, `cargo.lock` or equivalents). Append a suffix for pre-releases (for example `1.0.0-beta`); plain versions are stable releases.
+- Write the release notes in `release-notes.md`. If the file is missing or empty, no GitHub release is created.
+- Commit and push to `main`, then wait for the format and lint workflows to pass (if any).
+- Trigger the release workflow manually from the Actions tab. It builds the project (skipped when there is nothing to build), creates the GitHub release from the notes file, then clears `release-notes.md`.
+
+See [workflows.md](workflows.md) for the reference release workflow.
 
 ## Web projects
 

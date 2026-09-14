@@ -86,3 +86,54 @@ jobs:
   }
 }
 ```
+
+## release.yml (manual dispatch)
+
+```yaml
+name: Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build
+        run: bun run build
+
+      - name: Create GitHub release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="v$(bun -p "require('./package.json').version")"
+          if [ ! -s release-notes.md ]; then
+            echo "No release notes, skipping release."
+            exit 0
+          fi
+          gh release create "$VERSION" --title "$VERSION" --notes-file release-notes.md
+          : > release-notes.md
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add release-notes.md
+          git commit -m "chore: Clear release notes"
+          git push origin ${{ github.ref_name || 'main' }}
+```
+
+Omit the build step for projects with nothing to build. The release step mirrors the reference pattern: no notes in `release-notes.md` means no release, and the notes file is cleared after publishing.
