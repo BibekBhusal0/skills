@@ -1,40 +1,65 @@
 # Skills
 
-My personal collection of AI skills and global instructions for agents. Everything lives here and is installed onto the machine with symlinks, so this repo stays the single source of truth.
+My personal collection of AI skills and global agent instructions. Everything lives here and is installed onto the machine with symlinks, so this repo stays the single source of truth.
 
 ## What's inside
 
-- **Global instructions** (`AGENTS.global.md`): rules that apply to every opencode session, covering comment style, GitHub lookup, licensing, and docs.
-- **Skills** (`skills/`): opt-in workflows the agent loads on demand.
+- **Global instructions** (`AGENTS.global.md`): rules that apply to every AI coding session, covering comment style, GitHub lookup, licensing, and docs.
+- **Skills** (one folder per skill, for example `create-project/`): opt-in workflows the agent loads on demand.
   - `create-project`: scaffold a new repo at `~/Code` with GitHub remote, baseline files, and formatting/lint automation.
 
 ## Install
 
-Link what you need into place. Symlinks pick up future updates automatically, copies do not.
+Link what you need into place. Symlinks pick up future updates automatically, copies do not. Repeat the skill lines for each skill you want, then restart your agent so the new config takes effect.
+
+### opencode
 
 ```bash
 mkdir -p ~/.config/opencode/skills
-
-# Global instructions
 ln -s ~/Code/skills/AGENTS.global.md ~/.config/opencode/AGENTS.md
-
-# A skill (repeat for each skill you want)
-ln -s ~/Code/skills/skills/create-project ~/.config/opencode/skills/create-project
+ln -s ~/Code/skills/create-project ~/.config/opencode/skills/create-project
 ```
 
-Prefer a frozen snapshot instead? Copy the files:
+### Claude Code
+
+```bash
+mkdir -p ~/.claude/skills
+ln -s ~/Code/skills/AGENTS.global.md ~/.claude/CLAUDE.md
+ln -s ~/Code/skills/create-project ~/.claude/skills/create-project
+```
+
+### Codex
+
+```bash
+mkdir -p ~/.codex/skills
+ln -s ~/Code/skills/AGENTS.global.md ~/.codex/AGENTS.md
+ln -s ~/Code/skills/create-project ~/.codex/skills/create-project
+```
+
+### Other agent-compatible tools
+
+```bash
+mkdir -p ~/.agents/skills
+ln -s ~/Code/skills/create-project ~/.agents/skills/create-project
+```
+
+### Cursor
+
+Nothing to link. Cursor picks up the repo-level `AGENTS.md` files on its own.
+
+### Frozen snapshot
+
+Prefer a copy that never changes? Copy the files instead of linking:
 
 ```bash
 cp ~/Code/skills/AGENTS.global.md ~/.config/opencode/AGENTS.md
-cp -r ~/Code/skills/skills/create-project ~/.config/opencode/skills/create-project
+cp -r ~/Code/skills/create-project ~/.config/opencode/skills/create-project
 ```
-
-The same works for `~/.agents/skills/` if you want a skill visible to agent-compatible tools. Restart opencode after installing so the new config takes effect.
 
 ## Add a new skill
 
-1. Create `skills/<name>/SKILL.md` with `name` and `description` frontmatter.
-2. Link it into `~/.config/opencode/skills/` as shown above and restart opencode.
+1. Create `<name>/SKILL.md` with `name` and `description` frontmatter.
+2. Link it into each skills directory as shown above and restart your agent.
 
 ## License
 

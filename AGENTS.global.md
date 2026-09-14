@@ -1,6 +1,6 @@
 # Global instructions
 
-Personal defaults for every opencode session on this machine.
+Personal defaults for every agents session on this machine.
 
 ## Code comments
 
