@@ -5,8 +5,9 @@ My personal collection of AI skills and global agent instructions. Everything li
 ## What's inside
 
 - **Global instructions** (`AGENTS.global.md`): rules that apply to every AI coding session, covering comment style, GitHub lookup, licensing, and docs.
-- **Skills** (one folder per skill, for example `create-project/`): opt-in workflows the agent loads on demand.
+- **Skills** (one folder per skill): opt-in workflows the agent loads on demand.
   - `create-project`: scaffold a new repo at `~/Code` with GitHub remote, baseline files, and formatting/lint automation.
+  - `unslop`: cut AI tells from any writing, always applied.
 
 ## Install
 
@@ -64,3 +65,7 @@ cp -r ~/Code/skills/create-project ~/.config/opencode/skills/create-project
 ## License
 
 MIT, see [LICENSE](LICENSE).
+
+## Credit
+
+- `unslop/` skill taken from [cursor/plugins](https://github.com/cursor/plugins) (`pstack/skills/unslop`), MIT licensed.
