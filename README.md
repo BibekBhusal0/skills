@@ -9,6 +9,8 @@ My personal collection of AI skills and global agent instructions. Everything li
   - `create-project`: scaffold a new repo at `~/Code` with GitHub remote, baseline files, and formatting/lint automation.
   - `unslop`: cut AI tells from any writing, always applied.
   - `git-commit`: atomic git commits with conventional message analysis, intelligent staging, and message generation.
+  - `frontend-design`: distinctive, intentional visual design for new UI or reshaping existing UI.
+  - `html-slides`: HTML presentations with reveal.js.
 
 ## Install
 
@@ -71,3 +73,5 @@ MIT, see [LICENSE](LICENSE).
 
 - `unslop/` skill taken from [cursor/plugins](https://github.com/cursor/plugins) (`pstack/skills/unslop`), MIT licensed.
 - `git-commit/` skill inspired by [vekzz-dev/opencode-skills](https://github.com/vekzz-dev/opencode-skills) (`git-commit/`), MIT licensed.
+- `frontend-design/` skill taken from [anthropics/skills](https://github.com/anthropics/skills) (`skills/frontend-design/`), Apache 2.0 licensed, see LICENSE.txt in the skill folder.
+- `html-slides/` skill taken from [claude-office-skills/skills](https://github.com/claude-office-skills/skills) (`html-slides/`), MIT licensed.
