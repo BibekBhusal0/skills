@@ -19,6 +19,14 @@ Personal defaults for every agent session on this machine.
 - Avoid one-line functions that are just casting wrappers.
 - If not already specified in project, I generally like to use the following tech: Tailwind, React, Vite, bun
 
+## Agent Behavior
+
+- Change only what was asked. Keep diffs minimal. Never delete files, rename symbols, remove logs or debug prints, remove comments, or change text, content, or behavior unless explicitly requested.
+- Read only the files needed for the task. Don't explore the codebase broadly and don't read library or tool sources; without reading available docs first.
+- Read a file before editing it. Copy the matched text exactly including whitespace and indentation, and include enough surrounding context to make the match unique.
+- Verify with the cheapest command that checks the work (cargo check, lint, typecheck). Don't build, run, or test unless asked.
+- No decorative banner or separator comments. No em dashes in markdown.
+
 ## GitHub Lookup
 
 To inspect code or docs on GitHub, clone the repository locally instead of reading it through web fetch. Web fetch drops formatting and truncates; a local clone is searchable and complete.
