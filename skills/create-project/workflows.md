@@ -1,9 +1,6 @@
 # Reference CI workflows
 
-Adapt these per project. Non-web projects keep the same shape but swap the
-Bun steps for the stack's install/lint/format commands. Template field notes
-for a generic linter: PR workflow runs the check, push workflow applies the
-fix and auto-commits.
+Adapt these per project. Non-web projects keep the same shape but swap the Bun steps for the stack's install/lint/format commands: the PR workflow runs the check, the push workflow applies the fix and auto-commits.
 
 ## lint.yml (pull requests)
 
