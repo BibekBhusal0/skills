@@ -1,0 +1,14 @@
+{
+  "name": "skills",
+  "description": "Personal AI skills and global opencode instructions",
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "prettier --check ."
+  },
+  "author": "Bibek Bhusal",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "prettier": "^3.9.6"
+  }
+}
