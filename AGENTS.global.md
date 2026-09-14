@@ -1,17 +1,25 @@
-# Global instructions
+# Global Instructions
 
-Personal defaults for every agents session on this machine.
+Personal defaults for every agent session on this machine.
 
-## Code comments
+## Coding Preferences (General)
 
-Write only high-value comments. Every comment must earn its place.
+- Keep things simple. Channel "yagni" energy unless told otherwise.
+- Type safety is useful, take advantage of it.
+- Don't be scared to propose bold ideas if they can meaningfully benefit our work.
+- Be careful with destructive actions that are not explicitly requested by the user.
+- Tests are good! Endless smoke tests, "regression tests" for feature deletions, etc. much less good. Tests should be focused, not slop.
+- Comments are a great way to clarify functionality and how code is used. Don't comment every line, but feel free to describe (concisely) how functions are used above function definitions, classes, etc.
+- Keep comments up to date! When making changes, it's important to keep things in sync.
 
-- Explain what is not obvious at first glance: non-trivial logic, surprising side effects, load-bearing quirks, why this approach over the obvious one.
-- Break down complex blocks into their intent before the implementation.
-- Never narrate the conversation, address the reader, or describe what you just did. No greetings, no sign-offs, no meta-commentary.
-- Never restate what the code already says. If the comment adds nothing beyond the identifiers, delete it.
+## Coding Preferences (TypeScript Focused)
 
-## GitHub lookup
+- `any` is the enemy. Inferred types are our friend. Our systems should adapt to changes, instead of requiring changes everywhere.
+- If your TS code looks like a Python dev wrote it, it is bad TS code.
+- Avoid one-line functions that are just casting wrappers.
+- If not already specified in project, I generally like to use the following tech: Tailwind, React, Vite, bun
+
+## GitHub Lookup
 
 To inspect code or docs on GitHub, clone the repository locally instead of reading it through web fetch. Web fetch drops formatting and truncates; a local clone is searchable and complete.
 
@@ -19,7 +27,7 @@ To inspect code or docs on GitHub, clone the repository locally instead of readi
 - Location: `~/Code/random/opencode/<repo-name>`.
 - Reuse existing clones: if the directory already exists, skip cloning. Run `git pull` inside it only when the latest changes are actually needed.
 
-## Licensing and credit
+## Licensing and Credit
 
 When code is inspired by or copied from another repository:
 
@@ -27,7 +35,7 @@ When code is inspired by or copied from another repository:
 - Credit the source in the project's README: repository link, what was taken, and its license.
 - No credit needed for code from my own projects (`github.com/bibekbhusal0`, `github.com/BibekBhusal0`).
 
-## Writing docs for humans
+## Writing Docs for Humans
 
 Documentation is written for the person reading it, not the system it describes.
 
