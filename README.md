@@ -8,6 +8,7 @@ My personal collection of AI skills and global agent instructions. Everything li
 - **Skills** (one folder per skill): opt-in workflows the agent loads on demand.
   - `create-project`: scaffold a new repo at `~/Code` with GitHub remote, baseline files, and formatting/lint automation.
   - `unslop`: cut AI tells from any writing, always applied.
+  - `git-commit`: atomic git commits with conventional message analysis, intelligent staging, and message generation.
 
 ## Install
 
@@ -69,3 +70,4 @@ MIT, see [LICENSE](LICENSE).
 ## Credit
 
 - `unslop/` skill taken from [cursor/plugins](https://github.com/cursor/plugins) (`pstack/skills/unslop`), MIT licensed.
+- `git-commit/` skill inspired by [vekzz-dev/opencode-skills](https://github.com/vekzz-dev/opencode-skills) (`git-commit/`), MIT licensed.
