@@ -9,7 +9,6 @@ Personal defaults for every agent session on this machine.
 - Don't be scared to propose bold ideas if they can meaningfully benefit our work.
 - Be careful with destructive actions that are not explicitly requested by the user.
 - Tests are good! Endless smoke tests, "regression tests" for feature deletions, etc. much less good. Tests should be focused, not slop.
-- Comments are a great way to clarify functionality and how code is used. Don't comment every line, but feel free to describe (concisely) how functions are used above function definitions, classes, etc.
 - Keep comments up to date! When making changes, it's important to keep things in sync.
 
 ## Coding Preferences (TypeScript Focused)
@@ -18,6 +17,15 @@ Personal defaults for every agent session on this machine.
 - If your TS code looks like a Python dev wrote it, it is bad TS code.
 - Avoid one-line functions that are just casting wrappers.
 - If not already specified in project, I generally like to use the following tech: Tailwind, React, Vite, bun
+
+## Code Comments
+
+Write only high-value comments. Every comment must earn its place.
+
+- Explain what is not obvious at first glance: non-trivial logic, surprising side effects, load-bearing quirks, why this approach over the obvious one.
+- Break down complex blocks into their intent before the implementation.
+- Never narrate the conversation, address the reader, or describe what you just did. No greetings, no sign-offs, no meta-commentary.
+- Never restate what the code already says. If the comment adds nothing beyond the identifiers, delete it.
 
 ## Agent Behavior
 
