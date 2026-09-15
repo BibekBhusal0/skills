@@ -11,6 +11,9 @@ My personal collection of AI skills and global agent instructions. Everything li
   - `git-commit`: atomic git commits with conventional message analysis, intelligent staging, and message generation.
   - `frontend-design`: distinctive, intentional visual design for new UI or reshaping existing UI.
   - `html-slides`: HTML presentations with reveal.js.
+  - `remotion`: React to MP4 video with official Remotion agent skills.
+  - `ffmpeg`: video and audio processing for Remotion projects.
+  - `manim`: diagram and animation videos from natural language with Manim.
 
 ## Install
 
@@ -75,3 +78,6 @@ MIT, see [LICENSE](LICENSE).
 - `git-commit/` skill inspired by [vekzz-dev/opencode-skills](https://github.com/vekzz-dev/opencode-skills) (`git-commit/`), MIT licensed.
 - `frontend-design/` skill taken from [anthropics/skills](https://github.com/anthropics/skills) (`skills/frontend-design/`), Apache 2.0 licensed, see LICENSE.txt in the skill folder.
 - `html-slides/` skill taken from [claude-office-skills/skills](https://github.com/claude-office-skills/skills) (`html-slides/`), MIT licensed.
+- `remotion/` skills taken from [remotion-dev/skills](https://github.com/remotion-dev/skills), trimmed to the basic guides (create, markup, multimedia, captions, studio, render) with maps, SaaS, upgrade, interactivity, docs, icons, and agent files removed, and all commands switched from npm/npx to bun/bunx.
+- `ffmpeg/` skill taken from [digitalsamba/claude-code-video-toolkit](https://github.com/digitalsamba/claude-code-video-toolkit) (`.claude/skills/ffmpeg/`), MIT licensed.
+- `manim/` skill taken from [bassimeledath/manim-video-maker](https://github.com/bassimeledath/manim-video-maker) (`/manimate` skill with library, references, templates, examples), MIT licensed.
