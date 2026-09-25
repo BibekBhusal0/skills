@@ -14,6 +14,7 @@ My personal collection of AI skills and global agent instructions. Everything li
   - `remotion`: React to MP4 video with official Remotion agent skills.
   - `ffmpeg`: video and audio processing for Remotion projects.
   - `manim`: diagram and animation videos from natural language with Manim.
+  - `obsidian-bases`: create and edit Obsidian Bases (`.base`) with views, filters, formulas, and summaries.
 
 ## Install
 
@@ -81,3 +82,4 @@ MIT, see [LICENSE](LICENSE).
 - `remotion/` skills taken from [remotion-dev/skills](https://github.com/remotion-dev/skills), trimmed to the basic guides (create, markup, multimedia, captions, studio, render) with maps, SaaS, upgrade, interactivity, docs, icons, and agent files removed, and all commands switched from npm/npx to bun/bunx.
 - `ffmpeg/` skill taken from [digitalsamba/claude-code-video-toolkit](https://github.com/digitalsamba/claude-code-video-toolkit) (`.claude/skills/ffmpeg/`), MIT licensed.
 - `manim/` skill taken from [bassimeledath/manim-video-maker](https://github.com/bassimeledath/manim-video-maker) (`/manimate` skill with library, references, templates, examples), MIT licensed.
+- `obsidian-bases/` skill taken from [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) (`skills/obsidian-bases/`), MIT licensed.
