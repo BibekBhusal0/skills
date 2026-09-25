@@ -15,6 +15,7 @@ My personal collection of AI skills and global agent instructions. Everything li
   - `ffmpeg`: video and audio processing for Remotion projects.
   - `manim`: diagram and animation videos from natural language with Manim.
   - `obsidian-bases`: create and edit Obsidian Bases (`.base`) with views, filters, formulas, and summaries.
+  - `json-canvas`: create and edit Obsidian Canvas (`.canvas`) with nodes, edges, groups, and connections.
 
 ## Install
 
@@ -83,3 +84,4 @@ MIT, see [LICENSE](LICENSE).
 - `ffmpeg/` skill taken from [digitalsamba/claude-code-video-toolkit](https://github.com/digitalsamba/claude-code-video-toolkit) (`.claude/skills/ffmpeg/`), MIT licensed.
 - `manim/` skill taken from [bassimeledath/manim-video-maker](https://github.com/bassimeledath/manim-video-maker) (`/manimate` skill with library, references, templates, examples), MIT licensed.
 - `obsidian-bases/` skill taken from [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) (`skills/obsidian-bases/`), MIT licensed.
+- `json-canvas/` skill taken from [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) (`skills/json-canvas/`), MIT licensed.
