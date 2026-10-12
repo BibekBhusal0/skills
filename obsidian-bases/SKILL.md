@@ -1,6 +1,6 @@
 ---
 name: obsidian-bases
-description: Create and edit Obsidian Bases (.base files) with views, filters, formulas, and summaries. Use when working with .base files, creating database-like views of notes, or when the user mentions Bases, table views, card views, filters, or formulas in Obsidian.
+description: Create and edit Obsidian Bases (.base files) with views, filters, formulas, and summaries. Use when working with .base files, creating database-like views of notes, or when the user mentions Bases, table views, card views, kanban boards, filters, or formulas in Obsidian.
 ---
 
 # Obsidian Bases Skill
@@ -10,7 +10,7 @@ description: Create and edit Obsidian Bases (.base files) with views, filters, f
 1. **Create the file**: Create a `.base` file in the vault with valid YAML content
 2. **Define scope**: Add `filters` to select which notes appear (by tag, folder, property, or date)
 3. **Add formulas** (optional): Define computed properties in the `formulas` section
-4. **Configure views**: Add one or more views (`table`, `cards`, `list`, or `map`) with `order` specifying which properties to display
+4. **Configure views**: Add one or more views (`table`, `cards`, `list`, `kanban`, or `map`) with `order` specifying which properties to display. Kanban views require `groupBy` to define columns
 5. **Validate**: Verify the file is valid YAML with no syntax errors. Check that all referenced properties and formulas exist. Common issues: unquoted strings containing special YAML characters, mismatched quotes in formula expressions, referencing `formula.X` without defining `X` in `formulas`
 6. **Test in Obsidian**: Open the `.base` file in Obsidian to confirm the view renders correctly. If it shows a YAML error, check quoting rules below
 
@@ -47,12 +47,17 @@ summaries:
 
 # Define one or more views
 views:
-  - type: table | cards | list | map
+  - type: table | cards | list | kanban | map
     name: "View Name"
     limit: 10                    # Optional: limit results
-    groupBy:                     # Optional: group results
+    groupBy:                     # Optional except kanban, which requires it for columns
       property: property_name
       direction: ASC | DESC
+    groupOrder:                  # Optional: order and visibility of groups/columns
+      - "To Do"
+      - "In Progress"
+      - "Done"
+      # - null                   # Include files with no value for grouped property
     filters:                     # View-specific filters follow the same rules
       and:
         - 'status == "active"'
@@ -257,6 +262,35 @@ views:
       - status
 ```
 
+### Kanban View
+
+Requires Obsidian 1.14+. Displays files as cards organized into columns based on a grouped property. Each distinct value of `groupBy.property` becomes a column.
+
+```yaml
+views:
+  - type: kanban
+    name: "Board"
+    groupBy:
+      property: status
+      direction: ASC
+    groupOrder:                  # Optional: show only these columns, in this order
+      - "To Do"
+      - "In Progress"
+      - "Done"
+    order:                       # Properties shown on each card
+      - file.name
+      - due
+      - owner
+```
+
+- `groupBy` is required. Use a note property like `status` for workflow columns, or `file.folder` for folder-based triage.
+- `groupOrder` controls column order and visibility. If present, only listed values are shown, in that order. Use `null` in the list to include files with no value (shown in the **None** column). Remove `groupOrder` to show all groups. Column drag-reorder and show/hide from the Group menu in Obsidian 1.14.3+ is stored here.
+- Dragging a card between columns rewrites the grouped property in that note's frontmatter, but only when grouped by a writable note property. Grouping by `file.folder` moves the file instead. Grouping by a formula or most other file properties is read-only: cards cannot be moved and notes cannot be created from columns.
+- Only Markdown notes can be moved between columns. The plus icon / **New** button in a column creates a note prefilled with that column's value.
+- The first property in `order` is displayed as the card title. Extra `order` entries show below it. Kanban cards support the same cover-image settings as Cards view (`Image property`, `Image fit`, `Image aspect ratio`) plus `Hide empty columns` and `Column width` in view settings.
+- Scope the base with `filters` (for example `file.inFolder("Projects")` plus a type check). Bases include every file by default, so an unfiltered board sprouts a **None** column of notes with no value.
+- One grouping property only. Cards sort by the view sort, manual card order is not supported. Every card is a file, `- [ ]` tasks inside notes do not appear.
+
 ### Map View
 
 Requires latitude/longitude properties and the Maps community plugin.
@@ -337,6 +371,49 @@ views:
     order:
       - file.name
       - completed_date
+
+  - type: kanban
+    name: "Board"
+    groupBy:
+      property: status
+      direction: ASC
+    groupOrder:
+      - "To Do"
+      - "In Progress"
+      - "Done"
+    order:
+      - file.name
+      - formula.priority_label
+      - due
+      - formula.days_until_due
+```
+
+### Kanban Project Board
+
+```yaml
+filters:
+  and:
+    - file.inFolder("Projects")
+    - 'type == "project"'
+
+formulas:
+  overdue: 'if(due && due < today(), "Overdue", "")'
+
+views:
+  - type: kanban
+    name: "Board"
+    groupBy:
+      property: note.status
+      direction: ASC
+    groupOrder:
+      - Planned
+      - In progress
+      - Done
+    order:
+      - file.name
+      - note.due
+      - note.owner
+      - formula.overdue
 ```
 
 ### Reading List Base
@@ -495,5 +572,6 @@ formulas:
 - [Bases Syntax](https://help.obsidian.md/bases/syntax)
 - [Functions](https://help.obsidian.md/bases/functions)
 - [Views](https://help.obsidian.md/bases/views)
+- [Kanban view](https://help.obsidian.md/bases/views/kanban)
 - [Formulas](https://help.obsidian.md/formulas)
 - [Complete Functions Reference](references/FUNCTIONS_REFERENCE.md)
