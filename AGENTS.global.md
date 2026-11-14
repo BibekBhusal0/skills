@@ -36,6 +36,11 @@ Write only high-value comments. Every comment must earn its place.
 - Read a file before editing it. Copy the matched text exactly including whitespace and indentation, and include enough surrounding context to make the match unique.
 - Verify with the cheapest command that checks the work (cargo check, lint, typecheck). Don't build, run, or test unless asked.
 - No decorative banner or separator comments. No em dashes in markdown.
+- Don't use question tool until absolute necessary.
+
+## Shorthands
+
+- A message ending in `q!` is a question only: answer it, make zero changes (no edits, no writes, no commits, no installs).
 
 ## GitHub Lookup
 
